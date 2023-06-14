@@ -35,7 +35,11 @@ function App() {
       })
         .then((res) => res.json())
         .then((data) => {
-          console.log(data);
+          if (data === 'no message') {
+            return;
+          } else {
+            setNews(news.concat(data.Messages));
+          }
         });
     };
     let id = setInterval(fetchFn, 5000);
@@ -47,13 +51,9 @@ function App() {
       <MyHeader setOrder={setOrder} order={order} />
       <div className="containerNews">
         {order === 'old'
-          ? news.map((newsItem) => (
-              <NewsItem newsItem={newsItem} key={newsItem.id} />
-            ))
+          ? news.map((newsItem, i) => <NewsItem newsItem={newsItem} key={i} />)
           : news
-              .map((newsItem) => (
-                <NewsItem newsItem={newsItem} key={newsItem.id} />
-              ))
+              .map((newsItem, i) => <NewsItem newsItem={newsItem} key={i} />)
               .reverse()}
       </div>
     </>
