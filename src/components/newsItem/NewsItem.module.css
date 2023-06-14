@@ -1,0 +1,91 @@
+.news {
+    border: 1px solid var(--mainClr);
+    padding: 10px 20px;
+    border-radius: 5px;
+}
+
+
+.headerNews {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.photo {
+    margin-right: 10px;
+}
+
+.btnBlock {
+    position: absolute;
+    right: 100px;
+    display: flex;
+    gap: 10px;
+}
+
+.btn {
+    border: 1px solid var(--mainClr);
+    border-radius: 2px;
+    background: none;
+    outline: none;
+    padding: 8px 10px;
+    color: var(--mainClr);
+    font-size: 11px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+
+.activeBtn {
+    border: 1px solid var(--mainClr);
+    border-radius: 2px;
+    background: var(--mainClr);
+    outline: none;
+    padding: 8px 10px;
+    color: white;
+    font-size: 11px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+
+.starContainer {
+    position: absolute;
+    top: 20%;
+    right: 0;
+    width: 24px;
+    height: 24px;
+    clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+    background: var(--mainClr);
+    cursor: pointer;
+}
+
+.star {
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 20px;
+    height: 20px;
+    clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+    background: white;
+}
+
+.contentNews {
+    margin-top: 10px;
+}
+
+.content {
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+}
+
+
+.imgNews {
+    margin-left: 50px;
+    width: 300px;
+    height: 200px;
+}
+
+.videoNews {
+    margin-left: 50px;
+}

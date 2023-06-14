@@ -9,6 +9,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    z-index: 8;
 }
 
 .myHead span {
@@ -30,24 +31,26 @@
     right: 7%;
     padding: 10px 5px;
     background: white;
-    border: 1px solid black;
+    border: 1px solid var(--mainClr);
     border-radius: 5px;
-    animation: hidden 0.5s;
+    animation: hidden 0.3s;
     display: flex;
     flex-direction: column;
     gap: 10px;
+}
+
+.hiddenMenu div input {
+    margin-right: 10px;
 }
 
 @keyframes hidden {
     0% {
         opacity: 0;
         transform: translate(20px, -20px);
-
     }
 
     100% {
         opacity: 1;
         transform: translate(0, 0);
-
     }
 }

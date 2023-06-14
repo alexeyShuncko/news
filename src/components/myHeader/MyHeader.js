@@ -1,11 +1,12 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import settings from '../../images/settings.svg';
 import s from './MyHeader.module.css';
 
 const MyHeader = ({ order, setOrder }) => {
   const [isHidden, setIsHidden] = useState(true);
 
-  const clickHandler = () => {
+  const clickHandler = (e) => {
+    e.stopPropagation();
     setIsHidden(!isHidden);
   };
 
@@ -17,12 +18,13 @@ const MyHeader = ({ order, setOrder }) => {
   };
 
   useEffect(() => {
-    const hiddenMenu = () => {
+    const fn = () => {
       setIsHidden(true);
     };
     if (isHidden === false) {
-      document.addEventListener('click', hiddenMenu, { once: true });
+      document.addEventListener('click', fn);
     }
+    return () => document.removeEventListener('click', fn);
   }, [isHidden]);
 
   return (

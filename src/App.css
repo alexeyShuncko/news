@@ -1,0 +1,7 @@
+.containerNews {
+    width: 70%;
+    margin: 80px auto;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
