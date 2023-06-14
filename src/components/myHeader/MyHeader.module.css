@@ -1,0 +1,53 @@
+.myHead {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 20px;
+    background: var(--mainClr);
+    box-shadow: 0 0 4px var(--mainClr);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.myHead span {
+    font-size: 1.3em;
+}
+
+.myHead img {
+    position: absolute;
+    top: 15px;
+    right: 5%;
+    z-index: 10;
+    width: 30px;
+    cursor: pointer;
+}
+
+.hiddenMenu {
+    position: absolute;
+    top: 40px;
+    right: 7%;
+    padding: 10px 5px;
+    background: white;
+    border: 1px solid black;
+    border-radius: 5px;
+    animation: hidden 0.5s;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+@keyframes hidden {
+    0% {
+        opacity: 0;
+        transform: translate(20px, -20px);
+
+    }
+
+    100% {
+        opacity: 1;
+        transform: translate(0, 0);
+
+    }
+}

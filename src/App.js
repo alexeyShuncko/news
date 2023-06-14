@@ -1,24 +1,34 @@
-import logo from './logo.svg';
+import { useEffect, useState } from 'react';
 import './App.css';
+import MyHeader from './components/myHeader/MyHeader';
 
 function App() {
+  const [news, setNews] = useState([]);
+  const [order, setOrder] = useState('new');
+
+  useEffect(() => {
+    let bodyFormData = new FormData();
+    bodyFormData.append('actionName', 'MessagesLoad');
+    // bodyFormData.append('messageId', '2698');
+
+    fetch('http://a0830433.xsph.ru/', {
+      method: 'post',
+      body: bodyFormData,
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        setNews(data.Messages);
+      });
+  }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <MyHeader setOrder={setOrder} order={order} />
+      {news.map((newsItem) => (
+        <div key={newsItem.id}>{newsItem.content}</div>
+      ))}
+    </>
   );
 }
 
