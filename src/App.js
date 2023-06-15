@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useLayoutEffect, useState } from 'react';
 import './App.css';
 import MyHeader from './components/myHeader/MyHeader';
 import NewsItem from './components/newsItem/NewsItem';
@@ -7,10 +7,9 @@ function App() {
   const [news, setNews] = useState([]);
   const [order, setOrder] = useState('old');
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     let bodyFormData = new FormData();
     bodyFormData.append('actionName', 'MessagesLoad');
-    // bodyFormData.append('messageId', '2698');
 
     fetch('http://a0830433.xsph.ru/', {
       method: 'post',
@@ -20,6 +19,15 @@ function App() {
       .then((data) => {
         console.log(data);
         setNews(data.Messages);
+
+        data.Messages.map((el) => {
+          const obj = {
+            id: el.id,
+            star: false,
+          };
+          !localStorage.getItem(el.id) &&
+            localStorage.setItem(el.id, JSON.stringify(obj));
+        });
       });
   }, []);
 
@@ -39,6 +47,14 @@ function App() {
             return;
           } else {
             setNews(news.concat(data.Messages));
+            data.Messages.map((el) => {
+              const obj = {
+                id: el.id,
+                star: false,
+              };
+              !localStorage.getItem(el.id) &&
+                localStorage.setItem(el.id, JSON.stringify(obj));
+            });
           }
         });
     };
