@@ -61,7 +61,7 @@ function App() {
     <>
       <MyHeader setOrder={setOrder} order={order} />
       <div className="containerNews">
-        {order === 'old'
+        {order === 'old' && news.length !== 0
           ? news.map((newsItem, i) => <NewsItem newsItem={newsItem} key={i} />)
           : news
               .map((newsItem, i) => <NewsItem newsItem={newsItem} key={i} />)
