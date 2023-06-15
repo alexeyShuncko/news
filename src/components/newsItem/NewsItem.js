@@ -64,7 +64,7 @@ const NewsItem = ({ newsItem }) => {
           className={s.starContainer}
           title={
             starStatus === false
-              ? 'Добавить в избранное'
+              ? 'Добавить в избранные'
               : 'Удалить из избранных'
           }>
           <div

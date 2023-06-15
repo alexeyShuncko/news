@@ -37,7 +37,10 @@ function App() {
     const fetchFn = () => {
       let bodyFormData = new FormData();
       bodyFormData.append('actionName', 'MessagesLoad');
-      bodyFormData.append('messageId', news[news.length - 1].id);
+      bodyFormData.append(
+        'messageId',
+        news.length > 0 && news[news.length - 1].id
+      );
 
       fetch('http://a0830433.xsph.ru/', {
         method: 'post',
@@ -61,11 +64,14 @@ function App() {
     <>
       <MyHeader setOrder={setOrder} order={order} />
       <div className="containerNews">
-        {order === 'old' && news.length !== 0
-          ? news.map((newsItem, i) => <NewsItem newsItem={newsItem} key={i} />)
-          : news
-              .map((newsItem, i) => <NewsItem newsItem={newsItem} key={i} />)
-              .reverse()}
+        {news.length !== 0 &&
+          (order === 'old'
+            ? news.map((newsItem, i) => (
+                <NewsItem newsItem={newsItem} key={i} />
+              ))
+            : news
+                .map((newsItem, i) => <NewsItem newsItem={newsItem} key={i} />)
+                .reverse())}
       </div>
     </>
   );
