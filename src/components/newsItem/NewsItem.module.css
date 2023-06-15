@@ -101,6 +101,14 @@
     gap: 10px;
 }
 
+.allText {
+    margin-left: 45px;
+    margin-top: 10px;
+    color: #808080;
+    font-size: 12px;
+    cursor: pointer;
+}
+
 .time {
     font-size: 14px;
 }

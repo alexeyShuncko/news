@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react';
 const NewsItem = ({ newsItem }) => {
   const [active, setActive] = useState('Левый');
   const [starStatus, setStarStatus] = useState(false);
+  const [allText, setAllText] = useState(false);
 
   const clickBtn = (e) => {
     setActive(e.target.innerText);
@@ -38,6 +39,7 @@ const NewsItem = ({ newsItem }) => {
       setStarStatus(false);
     }
   };
+  const arrBtn = ['Левый', 'Центр', 'Правый'];
 
   return (
     <div className={s.news}>
@@ -49,21 +51,14 @@ const NewsItem = ({ newsItem }) => {
           <span>{newsItem.author}</span>
         </div>
         <div className={s.btnBlock}>
-          <button
-            className={active === 'Левый' ? s.activeBtn : s.btn}
-            onClick={clickBtn}>
-            Левый
-          </button>
-          <button
-            className={active === 'Центр' ? s.activeBtn : s.btn}
-            onClick={clickBtn}>
-            Центр
-          </button>
-          <button
-            className={active === 'Правый' ? s.activeBtn : s.btn}
-            onClick={clickBtn}>
-            Правый
-          </button>
+          {arrBtn.map((btn) => (
+            <button
+              key={btn}
+              className={active === btn ? s.activeBtn : s.btn}
+              onClick={clickBtn}>
+              {btn}
+            </button>
+          ))}
         </div>
         <div className={s.starContainer}>
           <div
@@ -74,8 +69,19 @@ const NewsItem = ({ newsItem }) => {
       <div className={s.contentNews}>
         <div className={s.contentBlock}>
           <div className={s.time}>{newsItem.date.slice(11, 16)}</div>
-          <div>{newsItem.content}</div>
+
+          {!allText && newsItem.content.length >= 200 ? (
+            <div>{newsItem.content.slice(0, 200)}...</div>
+          ) : (
+            <div>{newsItem.content}</div>
+          )}
         </div>
+        {newsItem.content.length > 200 && (
+          <div onClick={() => setAllText(!allText)} className={s.allText}>
+            {!allText ? 'Далее' : 'Меньше текста'}
+          </div>
+        )}
+
         {newsItem.attachments.length > 0 && (
           <div>
             {newsItem.attachments[0].type === 'image' ? (
