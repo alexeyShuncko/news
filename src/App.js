@@ -7,6 +7,17 @@ function App() {
   const [news, setNews] = useState([]);
   const [order, setOrder] = useState('old');
 
+  const updateStorage = (el) => {
+    !localStorage.getItem(el.id) &&
+      localStorage.setItem(
+        el.id,
+        JSON.stringify({
+          id: el.id,
+          star: false,
+        })
+      );
+  };
+
   useLayoutEffect(() => {
     let bodyFormData = new FormData();
     bodyFormData.append('actionName', 'MessagesLoad');
@@ -17,17 +28,8 @@ function App() {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         setNews(data.Messages);
-
-        data.Messages.map((el) => {
-          const obj = {
-            id: el.id,
-            star: false,
-          };
-          !localStorage.getItem(el.id) &&
-            localStorage.setItem(el.id, JSON.stringify(obj));
-        });
+        data.Messages.map(updateStorage);
       });
   }, []);
 
@@ -47,14 +49,7 @@ function App() {
             return;
           } else {
             setNews(news.concat(data.Messages));
-            data.Messages.map((el) => {
-              const obj = {
-                id: el.id,
-                star: false,
-              };
-              !localStorage.getItem(el.id) &&
-                localStorage.setItem(el.id, JSON.stringify(obj));
-            });
+            data.Messages.map(updateStorage);
           }
         });
     };

@@ -72,8 +72,8 @@ const NewsItem = ({ newsItem }) => {
         </div>
       </div>
       <div className={s.contentNews}>
-        <div className={s.content}>
-          <div>{newsItem.date.slice(11, 16)}</div>
+        <div className={s.contentBlock}>
+          <div className={s.time}>{newsItem.date.slice(11, 16)}</div>
           <div>{newsItem.content}</div>
         </div>
         {newsItem.attachments.length > 0 && (

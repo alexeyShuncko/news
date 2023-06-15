@@ -96,10 +96,13 @@
     margin-top: 10px;
 }
 
-.content {
+.contentBlock {
     display: flex;
     gap: 10px;
-    align-items: flex-start;
+}
+
+.time {
+    font-size: 14px;
 }
 
 

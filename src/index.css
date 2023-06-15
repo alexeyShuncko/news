@@ -2,11 +2,11 @@
   --mainClr: #0088EE;
 }
 
+
+
 body {
+  font-family: 'Lato', sans-serif;
   margin: 0;
-  font-family: 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
