@@ -41,6 +41,7 @@
 
 .hiddenMenu div input {
     margin-right: 10px;
+    cursor: pointer;
 }
 
 @keyframes hidden {

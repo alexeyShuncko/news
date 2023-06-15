@@ -60,7 +60,13 @@ const NewsItem = ({ newsItem }) => {
             </button>
           ))}
         </div>
-        <div className={s.starContainer}>
+        <div
+          className={s.starContainer}
+          title={
+            starStatus === false
+              ? 'Добавить в избранное'
+              : 'Удалить из избранных'
+          }>
           <div
             className={starStatus === false ? s.star : s.starActive}
             onClick={toggleStar}></div>
